@@ -1,7 +1,10 @@
 import streamlit as st
+import re
 
-# Email Address
+# Email Address (半角英数チェック)
 email = st.text_input("Email Address")
+if email and not re.match(r'^[\w\.-]+@[\w\.-]+\.\w+$', email):
+    st.error("メールアドレスは半角英数で入力してください。")
 
 # 職場コード
 workplace_code = st.selectbox("職場コードを選択してください", ["コード1", "コード2", "コード3", "その他"])
@@ -9,20 +12,26 @@ workplace_code = st.selectbox("職場コードを選択してください", ["�
 # 職場名
 workplace_name = st.selectbox("職場名を選択してください", ["職場A", "職場B", "職場C", "その他"])
 
-# 氏名
+# 氏名（スペースなしチェック）
 name = st.text_input("氏名")
+if ' ' in name:
+    st.error("氏名にスペースを入れないでください。")
 
-# ふりがな
+# ふりがな（スペースなしチェック）
 furigana = st.text_input("ふりがな")
+if ' ' in furigana:
+    st.error("ふりがなにスペースを入れないでください。")
 
-# 社員番号
+# 社員番号 (半角英数チェック)
 employee_number = st.text_input("社員番号")
+if employee_number and not re.match(r'^[A-Za-z0-9]+$', employee_number):
+    st.error("社員番号は半角英数で入力してください。")
 
 # 生年月日
 birthdate = st.date_input("生年月日を記入してください")
 
 # 性別
-gender = st.radio("性別", ["男性", "女性", "その他", "回答しない"])
+gender = st.radio("性別", ["男性", "女性"])
 
 
 # 大問1
