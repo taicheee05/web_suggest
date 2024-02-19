@@ -1,5 +1,30 @@
 import streamlit as st
 
+# Email Address
+email = st.text_input("Email Address")
+
+# 職場コード
+workplace_code = st.selectbox("職場コードを選択してください", ["コード1", "コード2", "コード3", "その他"])
+
+# 職場名
+workplace_name = st.selectbox("職場名を選択してください", ["職場A", "職場B", "職場C", "その他"])
+
+# 氏名
+name = st.text_input("氏名")
+
+# ふりがな
+furigana = st.text_input("ふりがな")
+
+# 社員番号
+employee_number = st.text_input("社員番号")
+
+# 生年月日
+birthdate = st.date_input("生年月日を記入してください")
+
+# 性別
+gender = st.radio("性別", ["男性", "女性", "その他", "回答しない"])
+
+
 # 大問1
 st.header("大問1: あなたの仕事について")
 questions_a = [
