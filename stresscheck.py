@@ -77,13 +77,22 @@ for question in questions_a:
 #scores1という辞書を定義して、score1のキーに質問内容、要素にmap_response_to_score()の結果が格納されることになる。
 
 # 素点換算表の各尺度毎に点数を計算する
-#   # 心理的な仕事の負担（量）の計算ロジック    
-def calculate_stress_quantity_scale1():
+    # 心理的な仕事の負担（量）の計算ロジック    
+def calculate_stress_quantity_scale1(scores1):
      return 15-(scores1["1. 非常にたくさんの仕事をしなければならない"]+scores1["2. 時間内に仕事が処理しきれない"]+scores1["3. 一生懸命働かなければならない"])
-
-# 心理的な仕事の負担（質）の計算ロジック
-def calculate_stress_quality_scale2():
+    # 心理的な仕事の負担（質）の計算ロジック
+def calculate_stress_quality_scale2(scores1):
     return 15 - (scores1["4. かなり注意を集中する必要がある"]+scores1["5. 高度の知識や技術が必要なむずかしい仕事だ"]+scores1["6. 勤務時間中はいつも仕事のことを考えていなければならない"])
+    # 自覚的な身体的負担度
+def calculate_stress_quality_scale3(scores1):
+    return 5 - (scores1["7. からだを大変よく使う仕事だ"])
+    #職場の対人関係でのストレス
+def calculate_stress_quality_scale4(scores1):
+    return 10 - (scores1["12. 私の部署内で意見のくい違いがある"]+scores1["13. 私の部署と他の部署とはうまが合わない"])+scores1["14. 私の職場の雰囲気は友好的である"]
+    #職場環境によるストレス
+def calculate_stress_quality_scale5(scores1):
+    return 5-scores1["15. 私の職場の作業環境（騒音、照明、温度、換気など）はよくない"]
+
 
 # 計算関数をキー名に関連付ける辞書
 calculations = {
@@ -232,7 +241,9 @@ if st.button('回答を提出する'):
     total_score4 = sum(scores4.values())  # scores辞書の値（点数）の合計を計算
     
     st.write(f"大問1の合計点は: {total_score1}点です。")  # 合計点を表示
+    st.write(f"心理的な仕事の負担（量）は: {total_score1}点です。")  # 合計点を表示    
     st.write(f"大問2の合計点は: {total_score2}点です。")  # 合計点を表示
     st.write(f"大問3の合計点は: {total_score3}点です。")  # 合計点を表示
     st.write(f"大問4の合計点は: {total_score4}点です。")  # 合計点を表示
+    
 
