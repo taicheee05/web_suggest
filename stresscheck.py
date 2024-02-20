@@ -158,17 +158,27 @@ for question in questions_d:
     score = map_response_to_score(response)
     # Store or process the score as needed
 
+import streamlit as st
+import re
 
+# Function to map responses to scores (already provided in your code)
+
+# Initialize scores for each section
+total_scores = {'大問1': 0, '大問2': 0, '大問3': 0, '大問4': 0}
+
+# Assume 'questions_a', 'questions_b', 'questions_c', 'questions_d' and their options are defined as per your code
+
+# Example for collecting responses and calculating scores for 大問1
+st.header("大問1: あなたの仕事について")
+for question in questions_a:
+    response = st.radio(question, options_a, key=question)
+    total_scores['大問1'] += map_response_to_score(response)
+
+# Repeat similar blocks for 大問2, 大問3, 大問4...
+
+# Add a submission button
 if st.button('回答を提出する'):
-    # Example calculation if scores are stored in a nested dictionary by section
-    total_score_a = sum(scores['大問1'])
-    total_score_b = sum(scores['大問2'])
-    total_score_c = sum(scores['大問3'])
-    total_score_d = sum(scores['大問4'])
-
     # Display the total scores
     st.subheader("提出結果")
-    st.write(f"大問1の合計点: {total_score_a}")
-    st.write(f"大問2の合計点: {total_score_b}")
-    st.write(f"大問3の合計点: {total_score_c}")
-    st.write(f"大問4の合計点: {total_score_d}")
+    for section, score in total_scores.items():
+        st.write(f"{section}の合計点: {score}")
