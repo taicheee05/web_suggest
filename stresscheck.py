@@ -120,11 +120,11 @@ calculations = {
 }
 
 # 各項目のスコアを格納する辞書
-results = {}
+results_a = {}
 
 # calculations辞書を使用して各尺度のスコアを計算
 for scale, func in calculations.items():
-    results[scale] = func(scores1)
+    results_a[scale] = func(scores1)
 
 # 結果の表示
 for scale, score in results.items():
@@ -222,4 +222,7 @@ if st.button('回答を提出する'):
     st.write(f"大問3の合計点は: {total_score3}点です。")  # 合計点を表示
     st.write(f"大問4の合計点は: {total_score4}点です。")  # 合計点を表示
     
+if st.button('回答を提出する'):
+    for scale, score in results.items():
+        st.write(f"{scale}: {score}点")
 
