@@ -121,15 +121,6 @@ calculations = {
 
 # 各項目のスコアを格納する辞書
 results_a = {}
-
-# calculations辞書を使用して各尺度のスコアを計算
-for scale, func in calculations.items():
-    results_a[scale] = func(scores1)
-
-# 結果の表示
-for scale, score in results.items():
-    print(f"{scale}: {score}")
-
 ###
 
 
