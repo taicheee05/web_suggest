@@ -123,6 +123,10 @@ calculations = {
 results_a = {}
 for scale, func in calculations.items():
     results_a[scale] = func(scores1)
+
+##results_aの辞書に、回答結果から素点換算表を用いて、各尺度の計算を完了するところまでは終了した。
+##次にしなければならないのは、男女別にデフォルトの表を作成して、素点を反映させることです。
+
 ###
 
 
