@@ -33,6 +33,18 @@ birthdate = st.date_input("生年月日を記入してください")
 # 性別
 gender = st.radio("性別", ["男性", "女性"])
 
+def map_response_to_score(response):
+    mapping = {
+        # Mapping for the first type of responses
+        "そうだ": 1, "まあそうだ": 2, "ややちがう": 3, "ちがう": 4,
+        # Mapping for the second type of responses
+        "ほとんどなかった": 1, "ときどきあった": 2, "しばしばあった": 3, "ほとんどいつもあった": 4,
+        # Mapping for the third type of responses
+        "非常に": 1, "かなり": 2, "多少": 3, "全くない": 4,
+        # Mapping for the fourth type of responses
+        "満足": 1, "まあ満足": 2, "やや不満足": 3, "不満足": 4,
+    }
+    return mapping.get(response, 0)  # Default to 0 if response not found
 
 # 大問1
 st.header("大問1: あなたの仕事について")
@@ -56,9 +68,13 @@ questions_a = [
     "17. 働きがいのある仕事だ",
 ]
 options_a = ["そうだ", "まあそうだ", "ややちがう", "ちがう"]
+scores = {}
 
 for question in questions_a:
-    st.radio(question, options_a, key=question)
+    # Collect each response using a unique key based on the question number
+    response = st.radio(question, options_a, key=question)
+    # Map the response to a score and store it in the scores dictionary
+    scores[question] = map_response_to_score(response)
 
 # 大問2
 st.header("大問2: 最近1か月間のあなたの状態について")
