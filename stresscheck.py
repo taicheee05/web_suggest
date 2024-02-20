@@ -78,7 +78,7 @@ for question in questions_a:
 
 # 素点換算表の各尺度毎に点数を計算する
     # 心理的な仕事の負担（量）の計算ロジック    
-def calculate_stress_quantity_scale1(scores1):
+def calculate_stress_quality_scale1(scores1):
      return 15-(scores1["1. 非常にたくさんの仕事をしなければならない"]+scores1["2. 時間内に仕事が処理しきれない"]+scores1["3. 一生懸命働かなければならない"])
     # 心理的な仕事の負担（質）の計算ロジック
 def calculate_stress_quality_scale2(scores1):
@@ -106,67 +106,30 @@ def calculate_stress_quality_scale9(scores1):
     return 5-scores1["17. 働きがいのある仕事だ"]
 
 
-
 # 計算関数をキー名に関連付ける辞書
 calculations = {
-    "心理的な仕事の負担（量）": calculate_stress_quantity,
-    "心理的な仕事の負担（質）": calculate_stress_quality,
-    # 他のキーと関数も同様に定義
-}
-
-# 各質問に対する回答を格納する辞書（サンプルデータ）
-question_responses = {
-    "心理的な仕事の負担（量）": [4, 5, 6],
-    "心理的な仕事の負担（質）": [3, 5, 6],
+    "心理的な仕事の負担（量）": calculate_stress_quality_scale1,
+    "心理的な仕事の負担（質）": calculate_stress_quality_scale2,
+    "自覚的な身体的負担度": calculate_stress_quality_scale3,
+    "職場の対人関係でのストレス": calculate_stress_quality_scale4,
+    "職場環境によるストレス": calculate_stress_quality_scale5,
+    "仕事のコントロール度": calculate_stress_quality_scale6,
+    "技能の活用度": calculate_stress_quality_scale7,
+    "仕事の適性度": calculate_stress_quality_scale8,
+    "働きがい": calculate_stress_quality_scale9
 }
 
 # 各項目のスコアを格納する辞書
-question_a_stress_factor = {}
+results = {}
 
-# 各質問に対してスコアを計算し、辞書に格納
-for key, responses in question_responses.items():
-    if key in calculations:
-        # 関連付けられた計算関数を呼び出し
-        question_a_stress_factor[key] = calculations[key](responses)
+# calculations辞書を使用して各尺度のスコアを計算
+for scale, func in calculations.items():
+    results[scale] = func(scores1)
 
-# 計算結果の表示（確認用）
-for key, score in question_a_stress_factor.items():
-    print(f"{key}: {score}")
+# 結果の表示
+for scale, score in results.items():
+    print(f"{scale}: {score}")
 
-# 各質問ごとの計算関数を定義
-def calculate_stress_quantity(responses):
-    # 心理的な仕事の負担（量）の計算ロジック
-    return sum(responses)
-
-def calculate_stress_quality(responses):
-    # 心理的な仕事の負担（質）の計算ロジック
-    return 15 - sum(responses)
-
-# 計算関数をキー名に関連付ける辞書
-calculations = {
-    "心理的な仕事の負担（量）": calculate_stress_quantity,
-    "心理的な仕事の負担（質）": calculate_stress_quality,
-    # 他のキーと関数も同様に定義
-}
-
-# 各質問に対する回答を格納する辞書（サンプルデータ）
-question_responses = {
-    "心理的な仕事の負担（量）": [4, 5, 6],
-    "心理的な仕事の負担（質）": [3, 5, 6],
-}
-
-# 各項目のスコアを格納する辞書
-question_a_stress_factor = {}
-
-# 各質問に対してスコアを計算し、辞書に格納
-for key, responses in question_responses.items():
-    if key in calculations:
-        # 関連付けられた計算関数を呼び出し
-        question_a_stress_factor[key] = calculations[key](responses)
-
-# 計算結果の表示（確認用）
-for key, score in question_a_stress_factor.items():
-    print(f"{key}: {score}")
 ###
 
 
