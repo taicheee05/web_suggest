@@ -157,3 +157,17 @@ for question in questions_d:
     # Map the response to a score
     score = map_response_to_score(response)
     # Store or process the score as needed
+
+if st.button('回答を提出する'):
+    # Calculate total scores for each section
+    total_score_a = sum(map_response_to_score(response) for question, response in scores.items() if question.startswith("1."))
+    total_score_b = sum(map_response_to_score(response) for question, response in scores.items() if question.startswith("2."))
+    total_score_c = sum(map_response_to_score(response) for question, response in scores.items() if question.startswith("3."))
+    total_score_d = sum(map_response_to_score(response) for question, response in scores.items() if question.startswith("4."))
+
+    # Display the total scores
+    st.subheader("提出結果")
+    st.write(f"大問1の合計点: {total_score_a}")
+    st.write(f"大問2の合計点: {total_score_b}")
+    st.write(f"大問3の合計点: {total_score_c}")
+    st.write(f"大問4の合計点: {total_score_d}")
