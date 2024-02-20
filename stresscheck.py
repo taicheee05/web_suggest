@@ -221,8 +221,6 @@ if st.button('回答を提出する'):
     st.write(f"大問2の合計点は: {total_score2}点です。")  # 合計点を表示
     st.write(f"大問3の合計点は: {total_score3}点です。")  # 合計点を表示
     st.write(f"大問4の合計点は: {total_score4}点です。")  # 合計点を表示
-    
-if st.button('回答を提出する'):
     for scale, score in results.items():
         st.write(f"{scale}: {score}点")
 
