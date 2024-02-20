@@ -68,11 +68,13 @@ questions_a = [
     "17. 働きがいのある仕事だ",
 ]
 options_a = ["そうだ", "まあそうだ", "ややちがう", "ちがう"]
-scores1 = {}
 
+scores1 = {}
 for question in questions_a:
     response = st.radio(question, options_a, key=question)
-    scores[question] = map_response_to_score(response)
+#responseには、ーザーがst.radioで選択した選択肢のテキストが格納されます。この例では、ユーザーが質問に対して選んだ["そうだ", "まあそうだ", "ややちがう", "ちがう"]のいずれかの文字列がresponse変数に入ります。
+    scores1[question] = map_response_to_score(response)
+#scores1という辞書を定義して、score1のキーに質問内容、要素にmap_response_to_score()の結果が格納されることになる。
 
 # 大問2
 st.header("大問2: 最近1か月間のあなたの状態について")
@@ -113,8 +115,9 @@ options_b = ["ほとんどなかった", "ときどきあった", "しばしば�
 scores2 = {}
 
 for question in questions_b:
-    response = st.radio(question, options_b, key=question)
-    score = map_response_to_score(response)
+    response = st.radio(question, options_a, key=question)
+#responseには、ーザーがst.radioで選択した選択肢のテキストが格納されます。この例では、ユーザーが質問に対して選んだ["そうだ", "まあそうだ", "ややちがう", "ちがう"]のいずれかの文字列がresponse変数に入ります。
+    scores2[question] = map_response_to_score(response)
 
 
 # 大問3
@@ -132,9 +135,10 @@ questions_c = [
 ]
 options_c = ["非常に", "かなり", "多少", "全くない"]
 
+scores3={}
 for question in questions_c:
     response = st.radio(question, options_c, key=question)
-    score = map_response_to_score(response)
+    scores3[question] = map_response_to_score(response)
 
 # 大問4
 st.header("大問4: 満足度について")
@@ -144,14 +148,19 @@ questions_d = [
     # 他の質問を追加する場合はここに記述
 ]
 options_d = ["満足", "まあ満足", "やや不満足", "不満足"]
-
+scores4={}
 for question in questions_d:
     response = st.radio(question, options_d, key=question)
-    score = map_response_to_score(response)
+    scores4[question] = map_response_to_score(response)
 
 if st.button('回答を提出する'):
-    total_score1 = sum(scores.values())  # scores辞書の値（点数）の合計を計算
-    total_score2 = sum(scores.values())  # scores辞書の値（点数）の合計を計算
+    total_score1 = sum(scores1.values())  # scores辞書の値（点数）の合計を計算
+    total_score2 = sum(scores2.values())  # scores辞書の値（点数）の合計を計算
+    total_score3 = sum(scores3.values())  # scores辞書の値（点数）の合計を計算
+    total_score4 = sum(scores4.values())  # scores辞書の値（点数）の合計を計算
     
     st.write(f"大問1の合計点は: {total_score1}点です。")  # 合計点を表示
+    st.write(f"大問2の合計点は: {total_score2}点です。")  # 合計点を表示
+    st.write(f"大問3の合計点は: {total_score3}点です。")  # 合計点を表示
+    st.write(f"大問4の合計点は: {total_score4}点です。")  # 合計点を表示
 
