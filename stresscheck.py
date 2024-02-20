@@ -79,7 +79,7 @@ for question in questions_a:
 # 素点換算表の各尺度毎に点数を計算する
 #   # 心理的な仕事の負担（量）の計算ロジック    
 def calculate_stress_quantity_scale1():
-     return 15-(scores1[1. 非常にたくさんの仕事をしなければならない]+scores1[,"2. 時間内に仕事が処理しきれない"]+scores1["3. 一生懸命働かなければならない"])
+     return 15-(scores1["1. 非常にたくさんの仕事をしなければならない"]+scores1["2. 時間内に仕事が処理しきれない"]+scores1["3. 一生懸命働かなければならない"])
 
 # 心理的な仕事の負担（質）の計算ロジック
 def calculate_stress_quality_scale2():
