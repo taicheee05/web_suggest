@@ -113,7 +113,12 @@ questions_b = [
 options_b = ["ほとんどなかった", "ときどきあった", "しばしばあった", "ほとんどいつもあった"]
 
 for question in questions_b:
-    st.radio(question, options_b, key=question)
+    # Collect the response using a unique key based on the question number
+    response = st.radio(question, options_b, key=question)
+    # Map the response to a score
+    score = map_response_to_score(response)
+    # Store or process the score as needed
+
 
 # 大問3
 st.header("大問3: あなたの周りの方々について")
@@ -131,7 +136,11 @@ questions_c = [
 options_c = ["非常に", "かなり", "多少", "全くない"]
 
 for question in questions_c:
-    st.radio(question, options_c, key=question)
+    # Collect the response using a unique key based on the question number
+    response = st.radio(question, options_c, key=question)
+    # Map the response to a score
+    score = map_response_to_score(response)
+    # Store or process the score as needed
 
 # 大問4
 st.header("大問4: 満足度について")
@@ -143,4 +152,8 @@ questions_d = [
 options_d = ["満足", "まあ満足", "やや不満足", "不満足"]
 
 for question in questions_d:
-    st.radio(question, options_d, key=question)
+    # Collect the response using a unique key based on the question number
+    response = st.radio(question, options_d, key=question)
+    # Map the response to a score
+    score = map_response_to_score(response)
+    # Store or process the score as needed
