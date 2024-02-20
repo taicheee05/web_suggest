@@ -158,12 +158,13 @@ for question in questions_d:
     score = map_response_to_score(response)
     # Store or process the score as needed
 
+
 if st.button('回答を提出する'):
-    # Calculate total scores for each section
-    total_score_a = sum(map_response_to_score(response) for question, response in scores.items() if question.startswith("1."))
-    total_score_b = sum(map_response_to_score(response) for question, response in scores.items() if question.startswith("2."))
-    total_score_c = sum(map_response_to_score(response) for question, response in scores.items() if question.startswith("3."))
-    total_score_d = sum(map_response_to_score(response) for question, response in scores.items() if question.startswith("4."))
+    # Example calculation if scores are stored in a nested dictionary by section
+    total_score_a = sum(scores['大問1'])
+    total_score_b = sum(scores['大問2'])
+    total_score_c = sum(scores['大問3'])
+    total_score_d = sum(scores['大問4'])
 
     # Display the total scores
     st.subheader("提出結果")
