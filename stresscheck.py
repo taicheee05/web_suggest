@@ -68,12 +68,10 @@ questions_a = [
     "17. 働きがいのある仕事だ",
 ]
 options_a = ["そうだ", "まあそうだ", "ややちがう", "ちがう"]
-scores = {}
+scores1 = {}
 
 for question in questions_a:
-    # Collect each response using a unique key based on the question number
     response = st.radio(question, options_a, key=question)
-    # Map the response to a score and store it in the scores dictionary
     scores[question] = map_response_to_score(response)
 
 # 大問2
@@ -112,12 +110,11 @@ questions_b = [
 
 options_b = ["ほとんどなかった", "ときどきあった", "しばしばあった", "ほとんどいつもあった"]
 
+scores2 = {}
+
 for question in questions_b:
-    # Collect the response using a unique key based on the question number
     response = st.radio(question, options_b, key=question)
-    # Map the response to a score
     score = map_response_to_score(response)
-    # Store or process the score as needed
 
 
 # 大問3
@@ -136,11 +133,8 @@ questions_c = [
 options_c = ["非常に", "かなり", "多少", "全くない"]
 
 for question in questions_c:
-    # Collect the response using a unique key based on the question number
     response = st.radio(question, options_c, key=question)
-    # Map the response to a score
     score = map_response_to_score(response)
-    # Store or process the score as needed
 
 # 大問4
 st.header("大問4: 満足度について")
@@ -152,13 +146,12 @@ questions_d = [
 options_d = ["満足", "まあ満足", "やや不満足", "不満足"]
 
 for question in questions_d:
-    # Collect the response using a unique key based on the question number
     response = st.radio(question, options_d, key=question)
-    # Map the response to a score
     score = map_response_to_score(response)
-    # Store or process the score as needed
 
 if st.button('回答を提出する'):
-    total_score = sum(scores.values())  # scores辞書の値（点数）の合計を計算
-    st.write(f"大問1の合計点は: {total_score}点です。")  # 合計点を表示
+    total_score1 = sum(scores.values())  # scores辞書の値（点数）の合計を計算
+    total_score2 = sum(scores.values())  # scores辞書の値（点数）の合計を計算
+    
+    st.write(f"大問1の合計点は: {total_score1}点です。")  # 合計点を表示
 
