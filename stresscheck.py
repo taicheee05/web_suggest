@@ -76,6 +76,78 @@ for question in questions_a:
     scores1[question] = map_response_to_score(response)
 #scores1という辞書を定義して、score1のキーに質問内容、要素にmap_response_to_score()の結果が格納されることになる。
 
+# 素点換算表の各尺度毎に点数を計算する
+#   # 心理的な仕事の負担（量）の計算ロジック    
+def calculate_stress_quantity_scale1():
+     return 15-(scores1["1. 非常にたくさんの仕事をしなければならない"]+scores1[,"2. 時間内に仕事が処理しきれない"]+scores1["3. 一生懸命働かなければならない"])
+
+# 心理的な仕事の負担（質）の計算ロジック
+def calculate_stress_quality_scale2():
+    return 15 - (scores1["4. かなり注意を集中する必要がある"]+scores1["5. 高度の知識や技術が必要なむずかしい仕事だ"]+scores1["6. 勤務時間中はいつも仕事のことを考えていなければならない"])
+
+# 計算関数をキー名に関連付ける辞書
+calculations = {
+    "心理的な仕事の負担（量）": calculate_stress_quantity,
+    "心理的な仕事の負担（質）": calculate_stress_quality,
+    # 他のキーと関数も同様に定義
+}
+
+# 各質問に対する回答を格納する辞書（サンプルデータ）
+question_responses = {
+    "心理的な仕事の負担（量）": [4, 5, 6],
+    "心理的な仕事の負担（質）": [3, 5, 6],
+}
+
+# 各項目のスコアを格納する辞書
+question_a_stress_factor = {}
+
+# 各質問に対してスコアを計算し、辞書に格納
+for key, responses in question_responses.items():
+    if key in calculations:
+        # 関連付けられた計算関数を呼び出し
+        question_a_stress_factor[key] = calculations[key](responses)
+
+# 計算結果の表示（確認用）
+for key, score in question_a_stress_factor.items():
+    print(f"{key}: {score}")
+
+# 各質問ごとの計算関数を定義
+def calculate_stress_quantity(responses):
+    # 心理的な仕事の負担（量）の計算ロジック
+    return sum(responses)
+
+def calculate_stress_quality(responses):
+    # 心理的な仕事の負担（質）の計算ロジック
+    return 15 - sum(responses)
+
+# 計算関数をキー名に関連付ける辞書
+calculations = {
+    "心理的な仕事の負担（量）": calculate_stress_quantity,
+    "心理的な仕事の負担（質）": calculate_stress_quality,
+    # 他のキーと関数も同様に定義
+}
+
+# 各質問に対する回答を格納する辞書（サンプルデータ）
+question_responses = {
+    "心理的な仕事の負担（量）": [4, 5, 6],
+    "心理的な仕事の負担（質）": [3, 5, 6],
+}
+
+# 各項目のスコアを格納する辞書
+question_a_stress_factor = {}
+
+# 各質問に対してスコアを計算し、辞書に格納
+for key, responses in question_responses.items():
+    if key in calculations:
+        # 関連付けられた計算関数を呼び出し
+        question_a_stress_factor[key] = calculations[key](responses)
+
+# 計算結果の表示（確認用）
+for key, score in question_a_stress_factor.items():
+    print(f"{key}: {score}")
+###
+
+
 # 大問2
 st.header("大問2: 最近1か月間のあなたの状態について")
 questions_b = [
