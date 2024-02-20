@@ -121,6 +121,8 @@ calculations = {
 
 # 各項目のスコアを格納する辞書
 results_a = {}
+for scale, func in calculations.items():
+    results_a[scale] = func(scores1)
 ###
 
 
