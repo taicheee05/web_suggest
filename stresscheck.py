@@ -80,7 +80,7 @@ for question in questions_a:
     # 心理的な仕事の負担（量）の計算ロジック    
 def calculate_stress_quality_scale1(scores1):
     score = 15 - (scores1["1. 非常にたくさんの仕事をしなければならない"] + scores1["2. 時間内に仕事が処理しきれない"] + scores1["3. 一生懸命働かなければならない"])
-    # 男性の場合
+    # 男性の場合    
     if gender == "男性":
         if 3 <= score <= 5:
             return "低い/少ない"
@@ -107,7 +107,34 @@ def calculate_stress_quality_scale1(scores1):
     
     # 心理的な仕事の負担（質）の計算ロジック
 def calculate_stress_quality_scale2(scores1):
-    return 15 - (scores1["4. かなり注意を集中する必要がある"]+scores1["5. 高度の知識や技術が必要なむずかしい仕事だ"]+scores1["6. 勤務時間中はいつも仕事のことを考えていなければならない"])
+def calculate_stress_quality_scale2(scores1, gender):
+    score = 15 - (scores1["4. かなり注意を集中する必要がある"] + scores1["5. 高度の知識や技術が必要なむずかしい仕事だ"] + scores1["6. 勤務時間中はいつも仕事のことを考えていなければならない"])
+    # 男性の場合
+    if gender == "男性":
+        if 3 <= score <= 5:
+            return "低い/少ない"
+        elif 6 <= score <= 7:
+            return "やや低い/少ない"
+        elif 8 <= score <= 9:
+            return "普通"
+        elif 10 <= score <= 11:
+            return "やや高い/多い"
+        elif score == 12:
+            return "多い"
+    # 女性の場合
+    elif gender == "女性":
+        if 3 <= score <= 4:
+            return "低い/少ない"
+        elif 5 <= score <= 6:
+            return "やや低い/少ない"
+        elif 7 <= score <= 8:
+            return "普通"  # 修正された範囲
+        elif 9 <= score <= 10:
+            return "やや高い/多い"
+        elif 11 <= score <= 12:
+            return "多い"
+
+    
     # 自覚的な身体的負担度
 def calculate_stress_quality_scale3(scores1):
     return 5 - (scores1["7. からだを大変よく使う仕事だ"])
