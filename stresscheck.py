@@ -158,3 +158,7 @@ for question in questions_d:
     score = map_response_to_score(response)
     # Store or process the score as needed
 
+if st.button('回答を提出する'):
+    total_score = sum(scores.values())  # scores辞書の値（点数）の合計を計算
+    st.write(f"大問1の合計点は: {total_score}点です。")  # 合計点を表示
+
