@@ -92,6 +92,19 @@ def calculate_stress_quality_scale4(scores1):
     #職場環境によるストレス
 def calculate_stress_quality_scale5(scores1):
     return 5-scores1["15. 私の職場の作業環境（騒音、照明、温度、換気など）はよくない"]
+    #仕事のコントロール度
+def calculate_stress_quality_scale6(scores1):
+    return 15-(scores1["8. 自分のペースで仕事ができる"]+scores1["9. 自分で仕事の順番・やり方を決めることができる"]+scores1["10. 職場の仕事の方針に自分の意見を反映できる"])
+    #技能の活用度
+def calculate_stress_quality_scale7(scores1):
+    return scores1["11. 自分の技能や知識を仕事で使うことが少ない"]
+    #仕事の適正度
+def calculate_stress_quality_scale8(scores1):
+    return 5-scores1["16. 仕事の内容は自分にあっている"]
+    #働きがい
+def calculate_stress_quality_scale9(scores1):
+    return 5-scores1["17. 働きがいのある仕事だ"]
+
 
 
 # 計算関数をキー名に関連付ける辞書
