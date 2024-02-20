@@ -158,6 +158,3 @@ for question in questions_d:
     score = map_response_to_score(response)
     # Store or process the score as needed
 
-import streamlit as st
-import re
-
