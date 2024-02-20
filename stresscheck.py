@@ -79,7 +79,32 @@ for question in questions_a:
 # 素点換算表の各尺度毎に点数を計算する
     # 心理的な仕事の負担（量）の計算ロジック    
 def calculate_stress_quality_scale1(scores1):
-     return 15-(scores1["1. 非常にたくさんの仕事をしなければならない"]+scores1["2. 時間内に仕事が処理しきれない"]+scores1["3. 一生懸命働かなければならない"])
+    score = 15 - (scores1["1. 非常にたくさんの仕事をしなければならない"] + scores1["2. 時間内に仕事が処理しきれない"] + scores1["3. 一生懸命働かなければならない"])
+    # 男性の場合
+    if gender == "男性":
+        if 3 <= score <= 5:
+            return "低い/少ない"
+        elif 6 <= score <= 7:
+            return "やや低い/少ない"
+        elif 8 <= score <= 9:
+            return "普通"
+        elif 10 <= score <= 11:
+            return "やや高い/多い"
+        elif score == 12:
+            return "多い"
+    # 女性の場合
+    elif gender == "女性":
+        if 3 <= score <= 4:
+            return "低い/少ない"
+        elif 5 <= score <= 6:
+            return "やや低い/少ない"
+        elif 7 <= score <= 9:
+            return "普通"
+        elif 10 <= score <= 11:
+            return "やや高い/多い"
+        elif score == 12:
+            return "多い"
+    
     # 心理的な仕事の負担（質）の計算ロジック
 def calculate_stress_quality_scale2(scores1):
     return 15 - (scores1["4. かなり注意を集中する必要がある"]+scores1["5. 高度の知識や技術が必要なむずかしい仕事だ"]+scores1["6. 勤務時間中はいつも仕事のことを考えていなければならない"])
@@ -126,6 +151,8 @@ for scale, func in calculations.items():
 
 ##results_aの辞書に、回答結果から素点換算表を用いて、各尺度の計算を完了するところまでは終了した。
 ##次にしなければならないのは、男女別にデフォルトの表を作成して、素点を反映させることです。
+##results_aのそれぞれの要素ごとに、表の分類に応じて、素点が分類される部分を特定したいです。最終的には、レーダーチャートにして表したいです。
+#→def calculate_stress_quality_scale1(scores1)でそれぞれしている計算の中に表の計算ロジックも含めると良いかも
 
 ###
 
