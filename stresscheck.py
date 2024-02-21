@@ -188,7 +188,7 @@ def calculate_stress_quality_scale5(scores1):
         elif score == 4:
             return "高い/多い"
     elif gender == "女性":
-         if score == 1:
+        if score == 1:
             return "低い/少ない"
         elif score == 2:
             return "普通"
