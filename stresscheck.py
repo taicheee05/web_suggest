@@ -277,10 +277,6 @@ calculations = {
     "働きがい": calculate_stress_quality_scale9
 }
 
-最後の部分で各スケールの計算結果をresults_a辞書に格納していますが、genderが必要な関数にgenderを渡すように修正する必要があります。以下のように修正できます：
-
-python
-Copy code
 # 各項目のスコアを格納する辞書
 results_a = {}
 for scale, func in calculations.items():
