@@ -1,6 +1,7 @@
 import streamlit as st
 import re
 import numpy as np
+import pandas as pd
 
 # Email Address (半角英数チェック)
 email = st.text_input("Email Address")
