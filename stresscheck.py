@@ -332,11 +332,155 @@ questions_b = [
 options_b = ["ほとんどなかった", "ときどきあった", "しばしばあった", "ほとんどいつもあった"]
 
 scores2 = {}
-
 for question in questions_b:
-    response = st.radio(question, options_a, key=question)
+    response = st.radio(question, options_b, key=question)
 #responseには、ーザーがst.radioで選択した選択肢のテキストが格納されます。この例では、ユーザーが質問に対して選んだ["そうだ", "まあそうだ", "ややちがう", "ちがう"]のいずれかの文字列がresponse変数に入ります。
     scores2[question] = map_response_to_score(response)
+
+# 素点換算表の各尺度毎に点数を計算する
+    # 活気    
+def calculate_stress_reaction1(scores2, gender):
+    score = scores2["1. 活気がわいてくる"]+scores2["2. 元気がいっぱいだ"]+scores2["3. 生き生きする"]
+    if 3 == score:
+        return "低い/少ない"
+    elif 4 <= score<=5:
+        return "やや低い/少ない"
+    elif 6 <= score<=7:
+        return "普通"
+    elif 8 <= score<=9:
+        return "やや高い/多い"
+    elif 10 <= score<=12:
+        return "高い/多い"
+    # イライラ感    
+def calculate_stress_reaction2(scores2, gender):
+    score = scores2["4. 怒りを感じる"]+scores2["5. 内心腹立たしい"]+scores2["6. イライラしている"]
+    if gender == "男性":
+        if 3 == score:
+            return "低い/少ない"
+        elif 4<= score <=5:
+            return "やや低い/少ない"
+        elif 6<= score <=7:
+            return "普通"
+        elif 8<= score <=9:
+            return "やや高い/多い"
+        elif 10<= score <=12:
+            return "高い/多い"
+    elif gender == "女性":
+        if 3 == score:
+            return "低い/少ない"
+        elif 4<= score <=5:
+            return "やや低い/少ない"
+        elif 6<= score <=8:
+            return "普通"
+        elif 9<= score <=10:
+            return "やや高い/多い"
+        elif 11<= score <=12:
+            return "高い/多い"
+    # 疲労感
+def calculate_stress_reaction3(scores2, gender):
+    score = scores2["7. ひどく疲れた"]+scores2["8. へとへとだ"]+scores2["9. だるい"]
+    if gender == "男性":
+        if 3 == score:
+            return "低い/少ない"
+        elif 4== score:
+            return "やや低い/少ない"
+        elif 5<= score <=7:
+            return "普通"
+        elif 8<= score <=10:
+            return "やや高い/多い"
+        elif 11<= score <=12:
+            return "高い/多い"
+    elif gender == "女性":
+        if 3 == score:
+            return "低い/少ない"
+        elif 4<= score <=5:
+            return "やや低い/少ない"
+        elif 6<= score <=8:
+            return "普通"
+        elif 9<= score <=11:
+            return "やや高い/多い"
+        elif 12== score:
+            return "高い/多い"
+    #不安感
+def calculate_stress_reaction4(scores2, gender):
+    score = scores2["10. 気がはりつめている"]+scores2["11. 不安だ"]+scores2["12. 落着かない"]
+    if gender == "男性":
+        if 3 == score:
+            return "低い/少ない"
+        elif 4== score:
+            return "やや低い/少ない"
+        elif 5<= score <=7:
+            return "普通"
+        elif 8<= score <=9:
+            return "やや高い/多い"
+        elif 10<= score <=12:
+            return "高い/多い"
+    elif gender == "女性":
+        if 3 == score:
+            return "低い/少ない"
+        elif 4== score:
+            return "やや低い/少ない"
+        elif 5<= score <=7:
+            return "普通"
+        elif 8<= score <=10:
+            return "やや高い/多い"
+        elif 11<= score<=12:
+            return "高い/多い"
+
+    #抑うつ感
+def calculate_stress_reaction5(scores2, gender):
+    score = scores2["13. ゆううつだ"]+scores2["14. 何をするのも面倒だ"]+scores2["15. 物事に集中できない"]+scores2["16. 気分が晴れない"]+scores2["17. 仕事が手につかない"]+scores2["18. 悲しいと感じる"]
+    if gender == "男性":
+        if 6 == score:
+            return "低い/少ない"
+        elif 7<= score<=8:
+            return "やや低い/少ない"
+        elif 9<= score <=12:
+            return "普通"
+        elif 13<= score <=16:
+            return "やや高い/多い"
+        elif 17<= score <=24:
+            return "高い/多い"
+    elif gender == "女性":
+        if 6 == score:
+            return "低い/少ない"
+        elif 7<= score<=8:
+            return "やや低い/少ない"
+        elif 9<= score <=12:
+            return "普通"
+        elif 13<= score <=17:
+            return "やや高い/多い"
+        elif 18<= score<=24:
+            return "高い/多い"
+    #身体愁訴
+def calculate_stress_reaction5(scores2, gender):
+    score = scores2["22. 首筋や肩がこる"] + scores2["23. 腰が痛い"] + scores2["24. 目が疲れる"] +
+              scores2["25. 動悸や息切れがする"] + scores2["26. 胃腸の具合が悪い"] + scores2["27. 食欲がない"] +
+              scores2["28. 便秘や下痢をする"] + scores2["29. よく眠れない"]
+    if gender == "男性":
+        if 11 == score:
+            return "低い/少ない"
+        elif 12<= score<=15:
+            return "やや低い/少ない"
+        elif 16<= score <=21:
+            return "普通"
+        elif 22<= score <=26:
+            return "やや高い/多い"
+        elif 27<= score <=44:
+            return "高い/多い"
+    elif gender == "女性":
+        if 11 <= score<=13:
+            return "低い/少ない"
+        elif 14<= score<=17:
+            return "やや低い/少ない"
+        elif 18<= score <=23:
+            return "普通"
+        elif 24<= score <=29:
+            return "やや高い/多い"
+        elif 30<= score<=44:
+            return "高い/多い"
+
+
 
 
 # 大問3
