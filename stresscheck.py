@@ -386,7 +386,14 @@ if st.button('回答を提出する'):
     for scale, score in results_a.items():
         st.write(f"{scale}: {score}点")
    
-df = pd.DataFrame(list(results_a.items()), columns=['Category', '低い/少ない', 'やや低い/少ない', '普通', 'やや高い/多い', '高い/多い'])
+columns = ['Category', '低い/少ない', 'やや低い/少ない', '普通', 'やや高い/多い', '高い/多い']
+df = pd.DataFrame(columns=columns)
 
+# Fill the DataFrame
+for category, rating in results_a.items():
+    # Create a new row with blanks
+    new_row = {column: '' for column in columns}
+    new_row['Category'] = category
+    new_row[rating] = '〇' 
 # Display the DataFrame as a table in Streamlit
 st.table(df)
