@@ -201,26 +201,26 @@ def calculate_stress_quality_scale5(scores1):
 def calculate_stress_quality_scale6(scores1):
     score= 15-(scores1["8. 自分のペースで仕事ができる"]+scores1["9. 自分で仕事の順番・やり方を決めることができる"]+scores1["10. 職場の仕事の方針に自分の意見を反映できる"])
     if gender == "男性":
-        if 3 <= score =< 4:
+        if 3 <= score <= 4:
             return "低い/少ない"
-        elif 5<= score =<6:
+        elif 5<= score <=6:
             return "やや低い/少ない"
-        elif 7<= score =<8:
+        elif 7<= score <=8:
             return "普通"
-        elif 9<= score =<10:
+        elif 9<= score <=10:
             return "やや高い/多い"
-        elif 11<= score =<12:
+        elif 11<= score <=12:
             return "高い/多い"
     elif gender == "女性":
         if 3 == score:
             return "低い/少ない"
-        elif 4<= score =<5:
+        elif 4<= score <=5:
             return "やや低い/少ない"
-        elif 6<= score =<8:
+        elif 6<= score <=8:
             return "普通"
-        elif 9<= score =<10:
+        elif 9<= score <=10:
             return "やや高い/多い"
-        elif 11<= score =<12:
+        elif 11<= score <=12:
             return "高い/多い"
 
     #技能の活用度
