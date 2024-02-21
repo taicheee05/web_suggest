@@ -568,3 +568,4 @@ if st.button('回答を提出する'):
 
     # Fill the DataFrame
     st.table(df_a)
+    st.table(df_b)
