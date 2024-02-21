@@ -394,6 +394,9 @@ for category, rating in results_a.items():
     # Create a new row with blanks
     new_row = {column: '' for column in columns}
     new_row['Category'] = category
-    new_row[rating] = '〇' 
-# Display the DataFrame as a table in Streamlit
+    new_row[rating] = '〇'  # Mark the circle in the matching column
+    
+    # Append the new row to the DataFrame
+    df = df.append(new_row, ignore_index=True)
+# Fill the DataFrame
 st.table(df)
