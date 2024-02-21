@@ -617,7 +617,7 @@ def calculate_stress_satisfaction1(scores4):
     elif 8 == score:
         return "高い/多い"
 calculations_satisfaction = {
-    "仕事や生活の満足度:calculate_stress_satisfaction1
+    "仕事や生活の満足度":calculate_stress_satisfaction1
 }
 
 # 各項目のスコアを格納する辞書
