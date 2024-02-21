@@ -636,13 +636,25 @@ def assign_points(value, reverse=False):
         points = {k: 6-v for k, v in points.items()}
     return points.get(value, 0)  # 評価値に対応するポイントを返します。
 
-# 合計ポイントを計算する
+# 大問１の合計ポイントを計算する
 total_points_a = 0
 for key, value in results_a.items():
     if key in ["心理的な仕事の負担（量）", "心理的な仕事の負担（質）", "自覚的な身体的負担度", "職場の対人関係でのストレス", "職場環境によるストレス"]:
         total_points_a += assign_points(value, reverse=True)  # この範囲のキーに対してはポイントを逆転させます。
     else:
         total_points_a += assign_points(value)  # それ以外のキーには通常のポイント割り当てを使用します。
+#  大問2の合計ポイントを計算する
+total_points_b = 0
+for key, value in results_b.items():
+    if key in ["イライラ感","疲労感","不安感","抑うつ感","身体愁訴"]:
+        total_points_b += assign_points(value, reverse=True)  # この範囲のキーに対してはポイントを逆転させます。
+    else:
+        total_points_b += assign_points(value)  # それ以外のキーには通常のポイント割り当てを使用します。
+#  大問3の合計ポイントを計算する
+total_points_c = 0
+for key, value in results_c.items():
+    total_points_c += assign_points(value)  # それ以外のキーには通常のポイント割り当てを使用します。
+
 
 
 
