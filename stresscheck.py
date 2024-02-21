@@ -633,18 +633,6 @@ for scale, func in calculations_satisfaction.items():
 
 
 if st.button('回答を提出する'):
-    total_score1 = sum(scores1.values())  # scores辞書の値（点数）の合計を計算
-    total_score2 = sum(scores2.values())  # scores辞書の値（点数）の合計を計算
-    total_score3 = sum(scores3.values())  # scores辞書の値（点数）の合計を計算
-    total_score4 = sum(scores4.values())  # scores辞書の値（点数）の合計を計算
-    
-    st.write(f"大問1の合計点は: {total_score1}点です。")  # 合計点を表示
-    st.write(f"心理的な仕事の負担（量）は: {total_score1}点です。")  # 合計点を表示    
-    st.write(f"大問2の合計点は: {total_score2}点です。")  # 合計点を表示
-    st.write(f"大問3の合計点は: {total_score3}点です。")  # 合計点を表示
-    st.write(f"大問4の合計点は: {total_score4}点です。")  # 合計点を表示
-    for scale, score in results_a.items():
-        st.write(f"{scale}: {score}点")
    
     columns = ['Category', '低い/少ない', 'やや低い/少ない', '普通', 'やや高い/多い', '高い/多い']
     
