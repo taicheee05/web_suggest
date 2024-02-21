@@ -238,7 +238,7 @@ def calculate_stress_quality_scale7(scores1):
 
     #仕事の適正度
 def calculate_stress_quality_scale8(scores1):
-    score 5-scores1["16. 仕事の内容は自分にあっている"]
+    score=5-scores1["16. 仕事の内容は自分にあっている"]
     if 1 == score:
         return "低い/少ない"
     elif 2 == score:
