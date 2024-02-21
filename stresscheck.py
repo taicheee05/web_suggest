@@ -1,5 +1,8 @@
 import streamlit as st
 import re
+import numpy as np
+import matplotlib.pyplot as plt
+from math import pi
 
 # Email Address (半角英数チェック)
 email = st.text_input("Email Address")
@@ -288,10 +291,43 @@ for scale, func in calculations.items():
         # gender引数が不要な場合は、scores1のみ渡す
         results_a[scale] = func(scores1)
 
-##results_aの辞書に、回答結果から素点換算表を用いて、各尺度の計算を完了するところまでは終了した。
-##次にしなければならないのは、男女別にデフォルトの表を作成して、素点を反映させることです。
 ##results_aのそれぞれの要素ごとに、表の分類に応じて、素点が分類される部分を特定したいです。最終的には、レーダーチャートにして表したいです。
-#→def calculate_stress_quality_scale1(scores1)でそれぞれしている計算の中に表の計算ロジックも含めると良いかも
+##レーダーチャートを描画する部分
+# 文字列のスコアを数値に変換する辞書
+score_values = {
+    "低い/少ない": 1,
+    "やや低い/少ない": 2,
+    "普通": 3,
+    "やや高い/多い": 4,
+    "高い/多い": 5
+}
+
+# results_aの各項目に対するスコアを数値化
+values = [score_values[score] for score in results_a.values()]
+values += values[:1]  # チャートを閉じるために最初の値を末尾に追加
+
+# 項目名
+categories = list(results_a.keys())
+N = len(categories)
+
+# レーダーチャートを描画するための角度を計算
+angles = [n / float(N) * 2 * pi for n in range(N)]
+angles += angles[:1]
+
+# matplotlibを使用してレーダーチャートを描画
+fig, ax = plt.subplots(figsize=(6, 6), subplot_kw=dict(polar=True))
+plt.xticks(angles[:-1], categories, color='grey', size=8)
+
+# グリッドラインを描画
+ax.set_rlabel_position(0)
+plt.yticks([1, 2, 3, 4, 5], ["低い", "やや低い", "普通", "やや高い", "高い"], color="grey", size=7)
+plt.ylim(0,5)
+
+# プロットデータの描画
+ax.plot(angles, values, linewidth=1, linestyle='solid', label='スコア')
+ax.fill(angles, values, 'b', alpha=0.1)
+
+
 
 ###
 
@@ -386,4 +422,7 @@ if st.button('回答を提出する'):
     st.write(f"大問4の合計点は: {total_score4}点です。")  # 合計点を表示
     for scale, score in results_a.items():
         st.write(f"{scale}: {score}点")
+    # Streamlitでレーダーチャートを表示
+    st.pyplot(fig)
+
 
