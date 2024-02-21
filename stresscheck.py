@@ -93,7 +93,7 @@ def calculate_stress_quality_scale1(scores1, gender):
         elif 10 <= score <= 11:
             return "やや高い/多い"
         elif score == 12:
-            return "多い"
+            return "高い/多い"
     # 女性の場合
     elif gender == "女性":
         if 3 <= score <= 4:
@@ -105,7 +105,7 @@ def calculate_stress_quality_scale1(scores1, gender):
         elif 10 <= score <= 11:
             return "やや高い/多い"
         elif score == 12:
-            return "多い"
+            return "高い/多い"
     
     # 心理的な仕事の負担（質）の計算ロジック
 def calculate_stress_quality_scale2(scores1, gender):
@@ -121,7 +121,7 @@ def calculate_stress_quality_scale2(scores1, gender):
         elif 10 <= score <= 11:
             return "やや高い/多い"
         elif score == 12:
-            return "多い"
+            return "高い/多い"
     # 女性の場合
     elif gender == "女性":
         if 3 <= score <= 4:
@@ -133,7 +133,7 @@ def calculate_stress_quality_scale2(scores1, gender):
         elif 9 <= score <= 10:
             return "やや高い/多い"
         elif 11 <= score <= 12:
-            return "多い"
+            return "高い/多い"
 
     
     # 自覚的な身体的負担度
@@ -386,7 +386,7 @@ if st.button('回答を提出する'):
     for scale, score in results_a.items():
         st.write(f"{scale}: {score}点")
    
-df = pd.DataFrame(list(results_a.items()), columns=['Category', 'Rating'])
+df = pd.DataFrame(list(results_a.items()), columns=['Category', '低い/少ない', 'やや低い/少ない', '普通', 'やや高い/多い', '高い/多い'])
 
 # Display the DataFrame as a table in Streamlit
 st.table(df)
