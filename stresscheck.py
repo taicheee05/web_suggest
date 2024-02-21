@@ -1,7 +1,6 @@
 import streamlit as st
 import re
 import numpy as np
-import matplotlib.pyplot as plt
 from math import pi
 
 # Email Address (半角英数チェック)
@@ -266,7 +265,6 @@ def calculate_stress_quality_scale9(scores1):
         return "高い/多い"
 
 
-
 # 計算関数をキー名に関連付ける辞書
 calculations = {
     "心理的な仕事の負担（量）": calculate_stress_quality_scale1,
@@ -293,41 +291,6 @@ for scale, func in calculations.items():
 
 ##results_aのそれぞれの要素ごとに、表の分類に応じて、素点が分類される部分を特定したいです。最終的には、レーダーチャートにして表したいです。
 ##レーダーチャートを描画する部分
-# 文字列のスコアを数値に変換する辞書
-score_values = {
-    "低い/少ない": 1,
-    "やや低い/少ない": 2,
-    "普通": 3,
-    "やや高い/多い": 4,
-    "高い/多い": 5
-}
-
-# results_aの各項目に対するスコアを数値化
-values = [score_values[score] for score in results_a.values()]
-values += values[:1]  # チャートを閉じるために最初の値を末尾に追加
-
-# 項目名
-categories = list(results_a.keys())
-N = len(categories)
-
-# レーダーチャートを描画するための角度を計算
-angles = [n / float(N) * 2 * pi for n in range(N)]
-angles += angles[:1]
-
-# matplotlibを使用してレーダーチャートを描画
-fig, ax = plt.subplots(figsize=(6, 6), subplot_kw=dict(polar=True))
-plt.xticks(angles[:-1], categories, color='grey', size=8)
-
-# グリッドラインを描画
-ax.set_rlabel_position(0)
-plt.yticks([1, 2, 3, 4, 5], ["低い", "やや低い", "普通", "やや高い", "高い"], color="grey", size=7)
-plt.ylim(0,5)
-
-# プロットデータの描画
-ax.plot(angles, values, linewidth=1, linestyle='solid', label='スコア')
-ax.fill(angles, values, 'b', alpha=0.1)
-
-
 
 ###
 
@@ -422,7 +385,8 @@ if st.button('回答を提出する'):
     st.write(f"大問4の合計点は: {total_score4}点です。")  # 合計点を表示
     for scale, score in results_a.items():
         st.write(f"{scale}: {score}点")
-    # Streamlitでレーダーチャートを表示
-    st.pyplot(fig)
+   
+df = pd.DataFrame(list(results_a.items()), columns=['Category', 'Rating'])
 
-
+# Display the DataFrame as a table in Streamlit
+st.table(df)
