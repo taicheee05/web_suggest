@@ -488,7 +488,7 @@ calculations_reactions = {
 }
 # 各項目のスコアを格納する辞書
 results_b = {}
-for scale, func in calculations.items():
+for scale, func in calculations_reactions.items():
     # 関数がgender引数を必要とするかどうかを判断し、適切に呼び出す
     if "gender" in func.__code__.co_varnames:
         # gender引数が必要な場合は、genderも渡す
