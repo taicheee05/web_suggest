@@ -559,7 +559,7 @@ def calculate_stress_support2(scores3):
         return "高い/多い"
 
     # 家族・友人からのサポート    
-def calculate_stress_support2(scores3):
+def calculate_stress_support3(scores3):
     score = 15-(scores3["3. 次の人たちはどれくらい気軽に話ができますか？・配偶者、家族、友人等"]+scores3["6. あなたが困った時、次の人たちはどれぐらい頼りになりますか？・配偶者、家族、友人等"]+scores3["9. あなたの個人的な問題を相談したら、次の人たちはどのくらい聞いてくれますか？・配偶者、家族、友人等"])
     if 3 <= score<=6:
         return "低い/少ない"
