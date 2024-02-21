@@ -277,10 +277,20 @@ calculations = {
     "働きがい": calculate_stress_quality_scale9
 }
 
+最後の部分で各スケールの計算結果をresults_a辞書に格納していますが、genderが必要な関数にgenderを渡すように修正する必要があります。以下のように修正できます：
+
+python
+Copy code
 # 各項目のスコアを格納する辞書
 results_a = {}
 for scale, func in calculations.items():
-    results_a[scale] = func(scores1)
+    # 関数がgender引数を必要とするかどうかを判断し、適切に呼び出す
+    if "gender" in func.__code__.co_varnames:
+        # gender引数が必要な場合は、genderも渡す
+        results_a[scale] = func(scores1, gender)
+    else:
+        # gender引数が不要な場合は、scores1のみ渡す
+        results_a[scale] = func(scores1)
 
 ##results_aの辞書に、回答結果から素点換算表を用いて、各尺度の計算を完了するところまでは終了した。
 ##次にしなければならないのは、男女別にデフォルトの表を作成して、素点を反映させることです。
