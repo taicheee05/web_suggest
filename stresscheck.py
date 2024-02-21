@@ -603,6 +603,23 @@ for question in questions_d:
     response = st.radio(question, options_d, key=question)
     scores4[question] = map_response_to_score(response)
 
+    # 仕事や生活の満足度    
+def calculate_stress_satisfaction1(scores4):
+    score = 10-(scores4["1. 仕事に満足だ"]+scores4["2. 家庭生活に満足だ"])
+    if 2 <= score<=3:
+        return "低い/少ない"
+    elif 4 == score:
+        return "やや低い/少ない"
+    elif 5 <= score<=6:
+        return "普通"
+    elif 7 == score:
+        return "やや高い/多い"
+    elif 8 == score:
+        return "高い/多い"
+calculations_satisfaction = {
+    "仕事や生活の満足度:calculate_stress_satisfaction1
+}
+
 if st.button('回答を提出する'):
     total_score1 = sum(scores1.values())  # scores辞書の値（点数）の合計を計算
     total_score2 = sum(scores2.values())  # scores辞書の値（点数）の合計を計算
