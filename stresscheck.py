@@ -635,6 +635,16 @@ if st.button('回答を提出する'):
         rows_b.append(new_row)  # リストに辞書を追加
     df_b = pd.DataFrame(rows_b, columns=columns)  # リストからDataFrameを作成
 
+    rows_c = []  # 空のリストを初期化、大問2
+    for category, rating in results_c.items():
+        new_row = {column: '' for column in columns}  # 新しい行を辞書として作成
+        new_row['Category'] = category
+        new_row[rating] = '〇'
+        rows_c.append(new_row)  # リストに辞書を追加
+    df_c = pd.DataFrame(rows_c, columns=columns)  # リストからDataFrameを作成
+
+    
     # Fill the DataFrame
     st.table(df_a)
     st.table(df_b)
+    st.table(df_c)
