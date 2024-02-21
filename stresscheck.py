@@ -231,17 +231,37 @@ def calculate_stress_quality_scale7(scores1):
     elif 2 == score:
         return "やや低い/少ない"
     elif score==3:
-        return "やや高い/多い"
+        return "普通"
     elif score==4:
-        return "高い/多い"
+        return "やや高い/多い"
 
 
     #仕事の適正度
 def calculate_stress_quality_scale8(scores1):
-    return 5-scores1["16. 仕事の内容は自分にあっている"]
+    score 5-scores1["16. 仕事の内容は自分にあっている"]
+    if 1 == score:
+        return "低い/少ない"
+    elif 2 == score:
+        return "やや低い/少ない"
+    elif score==3:
+        return "普通"
+    elif score==4:
+        return "高い/多い"
+
+
+
     #働きがい
 def calculate_stress_quality_scale9(scores1):
-    return 5-scores1["17. 働きがいのある仕事だ"]
+    score= 5-scores1["17. 働きがいのある仕事だ"]
+    if 1 == score:
+        return "低い/少ない"
+    elif 2 == score:
+        return "やや低い/少ない"
+    elif score==3:
+        return "普通"
+    elif score==4:
+        return "高い/多い"
+
 
 
 # 計算関数をキー名に関連付ける辞書
