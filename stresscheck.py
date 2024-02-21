@@ -519,6 +519,77 @@ for question in questions_c:
     response = st.radio(question, options_c, key=question)
     scores3[question] = map_response_to_score(response)
 
+    # 上司からのサポート    
+def calculate_stress_support1(scores3, gender):
+    score = 15-(scores3["1. 次の人たちはどのくらい気軽に話ができますか？・上司"]+scores3["1. 次の人たちはどのくらい気軽に話ができますか？・上司"]+scores3["7. あなたの個人的な問題を相談したら、次の人たちはどのくらい聞いてくれますか？・上司"])
+    if gender == "男性":
+        if 3 <= score<=4:
+            return "低い/少ない"
+        elif 5 <= score<=6:
+            return "やや低い/少ない"
+        elif 7 <= score<=8:
+            return "普通"
+        elif 9 <= score<=10:
+            return "やや高い/多い"
+        elif 11 <= score<=12:
+            return "高い/多い"
+    elif gender == "女性":
+        if 3 == score:
+            return "低い/少ない"
+        elif 4 <= score<=5:
+            return "やや低い/少ない"
+        elif 6 <= score<=7:
+            return "普通"
+        elif 8 <= score<=10:
+            return "やや高い/多い"
+        elif 11 <= score<=12:
+            return "高い/多い"
+    # 同僚からのサポート    
+def calculate_stress_support2(scores3):
+    score = 15-(scores3["2. 次の人たちはどれくらい気軽に話ができますか？・職場の同僚"]+scores3["5. あなたが困った時、次の人たちはどれくらい頼りになりますか？・職場の同僚"]+scores3["8. あなたの個人的な問題を相談したら、次の人たちはどのくらい聞いてくれますか？・職場の同僚"])
+    if 3 <= score<=5:
+        return "低い/少ない"
+    elif 6 <= score<=7:
+        return "やや低い/少ない"
+    elif 8 <= score<=9:
+        return "普通"
+    elif 10 <= score<=11:
+        return "やや高い/多い"
+    elif 12 == score:
+        return "高い/多い"
+
+    # 家族・友人からのサポート    
+def calculate_stress_support2(scores3):
+    score = 15-(scores3["3. 次の人たちはどれくらい気軽に話ができますか？・配偶者、家族、友人等"]+scores3["6. あなたが困った時、次の人たちはどれぐらい頼りになりますか？・配偶者、家族、友人等"]+scores3["9. あなたの個人的な問題を相談したら、次の人たちはどのくらい聞いてくれますか？・配偶者、家族、友人等"])
+    if 3 <= score<=6:
+        return "低い/少ない"
+    elif 7 <= score<=8:
+        return "やや低い/少ない"
+    elif 9 == score:
+        return "普通"
+    elif 10 <= score<=11:
+        return "やや高い/多い"
+    elif 12 == score:
+        return "高い/多い"
+
+calculations_support = {
+    "上司からのサポート": calculate_stress_support1,
+    "同僚からのサポート": calculate_stress_support2,
+    "家族・友人からのサポート": calculate_stress_support3
+}
+
+# 各項目のスコアを格納する辞書
+results_c = {}
+for scale, func in calculations_support.items():
+    # 関数がgender引数を必要とするかどうかを判断し、適切に呼び出す
+    if "gender" in func.__code__.co_varnames:
+        # gender引数が必要な場合は、genderも渡す
+        results_c[scale] = func(scores3, gender)
+    else:
+        # gender引数が不要な場合は、scores2のみ渡す
+        results_c[scale] = func(scores3)
+
+
 # 大問4
 st.header("大問4: 満足度について")
 questions_d = [
