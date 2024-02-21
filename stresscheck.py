@@ -451,7 +451,7 @@ def calculate_stress_reaction5(scores2, gender):
             return "高い/多い"
     #身体愁訴
 def calculate_stress_reaction6(scores2, gender):
-    score = scores2["22. 首筋や肩がこる"] + scores2["23. 腰が痛い"] + scores2["24. 目が疲れる"] +scores2["25. 動悸や息切れがする"] + scores2["26. 胃腸の具合が悪い"] + scores2["27. 食欲がない"] +scores2["28. 便秘や下痢をする"] + scores2["29. よく眠れない"]
+    score = scores2["19. めまいがする"] +scores2["20. 体のふしぶしが痛む"] + scores2["21. 頭が重かったり頭痛がする"] +scores2["22. 首筋や肩がこる"] + scores2["23. 腰が痛い"] + scores2["24. 目が疲れる"] +scores2["25. 動悸や息切れがする"] + scores2["26. 胃腸の具合が悪い"] + scores2["27. 食欲がない"] +scores2["28. 便秘や下痢をする"] + scores2["29. よく眠れない"]
     if gender == "男性":
         if 11 == score:
             return "低い/少ない"
