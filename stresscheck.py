@@ -226,9 +226,9 @@ def calculate_stress_quality_scale6(scores1):
     #技能の活用度
 def calculate_stress_quality_scale7(scores1):
     score =scores1["11. 自分の技能や知識を仕事で使うことが少ない"]
-    if score==1:
+    if 1 == score:
         return "低い/少ない"
-    elif score==2:
+    elif 2 == score:
         return "やや低い/少ない"
     elif score==3:
         return "やや高い/多い"
