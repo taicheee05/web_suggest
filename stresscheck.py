@@ -658,6 +658,7 @@ for key, value in results_c.items():
 
 
 
+
 if st.button('回答を提出する'):
    
     columns = ['Category', '低い/少ない', 'やや低い/少ない', '普通', 'やや高い/多い', '高い/多い']
@@ -699,3 +700,10 @@ if st.button('回答を提出する'):
     st.table(df_b)
     st.table(df_c)
     st.table(df_d)
+        # 条件を評価
+    if (total_points_b <= 12) or ((total_points_a + total_points_c <= 26) and (total_points_b <= 17)):
+        # 条件を満たす場合、メッセージを表示
+        st.write("あなたは高ストレス者に該当します")
+    else:
+        # 条件を満たさない場合、別のメッセージを表示（必要に応じて）
+        st.write("高ストレスのリスクは低いようです")
