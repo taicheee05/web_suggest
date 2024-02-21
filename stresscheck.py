@@ -554,7 +554,6 @@ if st.button('回答を提出する'):
         new_row['Category'] = category
         new_row[rating] = '〇'
         rows_a.append(new_row)  # リストに辞書を追加
-    
     df_a = pd.DataFrame(rows_a, columns=columns)  # リストからDataFrameを作成
 
     rows_b = []  # 空のリストを初期化、大問2
@@ -563,7 +562,6 @@ if st.button('回答を提出する'):
         new_row['Category'] = category
         new_row[rating] = '〇'
         rows_b.append(new_row)  # リストに辞書を追加
-
     df_b = pd.DataFrame(rows_b, columns=columns)  # リストからDataFrameを作成
 
     # Fill the DataFrame
