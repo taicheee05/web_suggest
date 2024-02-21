@@ -620,6 +620,18 @@ calculations_satisfaction = {
     "仕事や生活の満足度:calculate_stress_satisfaction1
 }
 
+# 各項目のスコアを格納する辞書
+results_d = {}
+for scale, func in calculations_satisfaction.items():
+    # 関数がgender引数を必要とするかどうかを判断し、適切に呼び出す
+    if "gender" in func.__code__.co_varnames:
+        # gender引数が必要な場合は、genderも渡す
+        results_c[scale] = func(scores4, gender)
+    else:
+        # gender引数が不要な場合は、scores4のみ渡す
+        results_d[scale] = func(scores4)
+
+
 if st.button('回答を提出する'):
     total_score1 = sum(scores1.values())  # scores辞書の値（点数）の合計を計算
     total_score2 = sum(scores2.values())  # scores辞書の値（点数）の合計を計算
@@ -660,8 +672,16 @@ if st.button('回答を提出する'):
         rows_c.append(new_row)  # リストに辞書を追加
     df_c = pd.DataFrame(rows_c, columns=columns)  # リストからDataFrameを作成
 
+    rows_d = []  # 空のリストを初期化、大問2
+    for category, rating in results_d.items():
+        new_row = {column: '' for column in columns}  # 新しい行を辞書として作成
+        new_row['Category'] = category
+        new_row[rating] = '〇'
+        rows_d.append(new_row)  # リストに辞書を追加
+    df_d = pd.DataFrame(rows_d, columns=columns)  # リストからDataFrameを作成
     
     # Fill the DataFrame
     st.table(df_a)
     st.table(df_b)
     st.table(df_c)
+    st.table(df_d)
