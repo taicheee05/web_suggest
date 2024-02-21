@@ -548,13 +548,13 @@ if st.button('回答を提出する'):
    
     columns = ['Category', '低い/少ない', 'やや低い/少ない', '普通', 'やや高い/多い', '高い/多い']
     
-    rows = []  # 空のリストを初期化
+    rows_a = []  # 空のリストを初期化
     for category, rating in results_a.items():
         new_row = {column: '' for column in columns}  # 新しい行を辞書として作成
         new_row['Category'] = category
         new_row[rating] = '〇'
-        rows.append(new_row)  # リストに辞書を追加
+        rows_a.append(new_row)  # リストに辞書を追加
     
-    df = pd.DataFrame(rows, columns=columns)  # リストからDataFrameを作成
+    df_a = pd.DataFrame(rows_a, columns=columns)  # リストからDataFrameを作成
     # Fill the DataFrame
-    st.table(df)
+    st.table(df_a)
