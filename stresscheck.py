@@ -700,6 +700,7 @@ if st.button('回答を提出する'):
     st.table(df_b)
     st.table(df_c)
     st.table(df_d)
+    st.
         # 条件を評価
     if (total_points_b <= 12) or ((total_points_a + total_points_c <= 26) and (total_points_b <= 17)):
         # 条件を満たす場合、メッセージを表示
