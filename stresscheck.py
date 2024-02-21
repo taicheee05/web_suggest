@@ -453,7 +453,7 @@ def calculate_stress_reaction5(scores2, gender):
         elif 18<= score<=24:
             return "高い/多い"
     #身体愁訴
-def calculate_stress_reaction5(scores2, gender):
+def calculate_stress_reaction6(scores2, gender):
     score = scores2["22. 首筋や肩がこる"] + scores2["23. 腰が痛い"] + scores2["24. 目が疲れる"] +scores2["25. 動悸や息切れがする"] + scores2["26. 胃腸の具合が悪い"] + scores2["27. 食欲がない"] +scores2["28. 便秘や下痢をする"] + scores2["29. よく眠れない"]
     if gender == "男性":
         if 11 == score:
@@ -478,6 +478,24 @@ def calculate_stress_reaction5(scores2, gender):
         elif 30<= score<=44:
             return "高い/多い"
 
+calculations_reactions = {
+    "活気": calculate_stress_reaction1,
+    "イライラ感": calculate_stress_reaction2,
+    "疲労感": calculate_stress_reaction3,
+    "不安感": calculate_stress_reaction4,
+    "抑うつ感": calculate_stress_reaction5,
+    "身体愁訴": calculate_stress_reaction6
+}
+# 各項目のスコアを格納する辞書
+results_b = {}
+for scale, func in calculations.items():
+    # 関数がgender引数を必要とするかどうかを判断し、適切に呼び出す
+    if "gender" in func.__code__.co_varnames:
+        # gender引数が必要な場合は、genderも渡す
+        results_b[scale] = func(scores2, gender)
+    else:
+        # gender引数が不要な場合は、scores2のみ渡す
+        results_b[scale] = func(scores2)
 
 
 
