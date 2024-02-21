@@ -289,10 +289,7 @@ for scale, func in calculations.items():
         # gender引数が不要な場合は、scores1のみ渡す
         results_a[scale] = func(scores1)
 
-##results_aのそれぞれの要素ごとに、表の分類に応じて、素点が分類される部分を特定したいです。最終的には、レーダーチャートにして表したいです。
-##レーダーチャートを描画する部分
-
-###
+#results_aのキーには尺度の名前が、要素部分には'低い/少ない', 'やや低い/少ない', '普通', 'やや高い/多い', '高い/多い'のいずれかが入っている。
 
 
 # 大問2
@@ -630,6 +627,23 @@ for scale, func in calculations_satisfaction.items():
     else:
         # gender引数が不要な場合は、scores4のみ渡す
         results_d[scale] = func(scores4)
+
+#高ストレス者のロジック作成
+# 評価値に基づいてポイントを割り当てる関数
+def assign_points(value, reverse=False):
+    points = {"低い/少ない": 1, "やや低い/少ない": 2, "普通": 3, "やや高い/多い": 4, "高い/多い": 5}
+    if reverse:  # reverseがTrueの場合、ポイントの割り当てを逆転させます。
+        points = {k: 6-v for k, v in points.items()}
+    return points.get(value, 0)  # 評価値に対応するポイントを返します。
+
+# 合計ポイントを計算する
+total_points_a = 0
+for key, value in results_a.items():
+    if key in ["心理的な仕事の負担（量）", "心理的な仕事の負担（質）", "自覚的な身体的負担度", "職場の対人関係でのストレス", "職場環境によるストレス"]:
+        total_points_a += assign_points(value, reverse=True)  # この範囲のキーに対してはポイントを逆転させます。
+    else:
+        total_points_a += assign_points(value)  # それ以外のキーには通常のポイント割り当てを使用します。
+
 
 
 if st.button('回答を提出する'):
